@@ -4,17 +4,20 @@ Documentation        Consulta Carrinho
 Resource    ../../routes/Carrinho.robot
 Library    ../../factories/Carrinho.py
 
-*** Variables ***
-${base_url}    https://serverest.dev
+Library       ../../factories/Produto.py
+Resource    ../../routes/Produto.robot
 
+Suite Setup    Set Client Key    
+
+*** Variables ***
 
 ${quantidade}        1
 
-${produto_1_id}        BeeJh5lz3k6kSIzA
+${produto_1_id}        K6leHdftCeOJj8BJ
 ${quantidade_produto_1}    2
 ${preco_unitario_1}        470
 
-${produto_2_id}        K6leHdftCeOJj8BJ
+${produto_2_id}        DED3TTJYXpRuQsTC
 ${quantidade_produto_2}    1
 ${preco_unitario_2}        5240
 
@@ -29,7 +32,25 @@ ${id_usuario}      oUb7aGkMtSEPf6BZ
 *** Test Cases ***
 Cenario 1 - Buscar Carrinho pelo Id 
     
-    ${response}            Retornar Carrinho Pelo Id     ${id_carrinho}   
+    
+
+    ${produto}          Produto
+
+    ${response}         Remover Um Produto        ${produto_1_id}  
+    #${response}         Enviar Um Produto       ${produto} 
+    
+    Status Should Be    201
+
+    ${carrinho}          Carrinho
+    ${response}         Enviar Um Carrinho       ${carrinho} 
+
+
+    Status Should Be    201
+    
+
+
+    
+    ${response}            Retornar Carrinho Pelo Id     ${response.json()['_id']}   
 
 
 

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.10.2 on win32)" generated="20220401 15:17:58.624" rpa="false" schemaversion="2">
+<suite id="s1" name="BuscarCarrinho" source="c:\projects\automacao_serverest\specs\Carrinho\BuscarCarrinho.robot">
+<kw name="Set Client Key" library="Base" type="SETUP">
+<msg timestamp="20220401 15:17:58.985" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{teste}</var>
+<arg>email=fulano@qa.com</arg>
+<arg>password=teste</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220401 15:17:58.993" level="TRACE">Arguments: [ 'email=fulano@qa.com' | 'password=teste' ]</msg>
+<msg timestamp="20220401 15:17:58.994" level="TRACE">Return: {'email': 'fulano@qa.com', 'password': 'teste'}</msg>
+<msg timestamp="20220401 15:17:58.994" level="INFO">&amp;{teste} = { email=fulano@qa.com | password=teste }</msg>
+<status status="PASS" starttime="20220401 15:17:58.992" endtime="20220401 15:17:58.994"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_URL}/login</arg>
+<arg>json=${teste}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220401 15:17:58.995" level="TRACE">Arguments: [ 'https://serverest.dev/login' | json={'email': 'fulano@qa.com', 'password': 'teste'} ]</msg>
+<msg timestamp="20220401 15:17:59.001" level="DEBUG">Starting new HTTPS connection (1): serverest.dev:443</msg>
+<msg timestamp="20220401 15:18:00.068" level="DEBUG">https://serverest.dev:443 "POST /login HTTP/1.1" 200 265</msg>
+<msg timestamp="20220401 15:18:00.071" level="INFO">POST Request : url=https://serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'{"email": "fulano@qa.com", "password": "teste"}' 
+ </msg>
+<msg timestamp="20220401 15:18:00.072" level="INFO">POST Response : url=https://serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '6ed4624f-12f1-4f09-9a86-76510402dabd', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '3a72e7e9b806cfacebed8f1b61c3be07;o=1', 'Date': 'Fri, 01 Apr 2022 18:18:00 GMT', 'Server': 'Google Frontend', 'Content-Length': '265'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg"
+} 
+ </msg>
+<msg timestamp="20220401 15:18:00.072" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20220401 15:18:00.073" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220401 15:17:58.994" endtime="20220401 15:18:00.073"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${token}</var>
+<arg>${response.json()["authorization"]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220401 15:18:00.077" level="TRACE">Arguments: [ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg' ]</msg>
+<msg timestamp="20220401 15:18:00.077" level="TRACE">Return: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg'</msg>
+<msg timestamp="20220401 15:18:00.077" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg</msg>
+<status status="PASS" starttime="20220401 15:18:00.074" endtime="20220401 15:18:00.077"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220401 15:18:00.078" level="TRACE">Arguments: [ '${token}' ]</msg>
+<msg timestamp="20220401 15:18:00.078" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg</msg>
+<msg timestamp="20220401 15:18:00.078" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220401 15:18:00.078" endtime="20220401 15:18:00.079"/>
+</kw>
+<msg timestamp="20220401 15:18:00.079" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220401 15:17:58.984" endtime="20220401 15:18:00.079"/>
+</kw>
+<test id="s1-t1" name="Cenario 1 - Buscar Carrinho pelo Id">
+<kw name="Carrinho" library="Carrinho">
+<var>${carrinho}</var>
+<msg timestamp="20220401 15:18:00.081" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220401 15:18:00.081" level="TRACE">Return: {'produtos': [{'idProduto': 'ysmxmA7vaLFU0p1Q', 'quantidade': 14},
+              {'idProduto': 'onRhfpvDtED1Yi9s', 'quantidade': 14}]}</msg>
+<msg timestamp="20220401 15:18:00.081" level="INFO">${carrinho} = {'produtos': [{'idProduto': 'ysmxmA7vaLFU0p1Q', 'quantidade': 14}, {'idProduto': 'onRhfpvDtED1Yi9s', 'quantidade': 14}]}</msg>
+<status status="PASS" starttime="20220401 15:18:00.080" endtime="20220401 15:18:00.082"/>
+</kw>
+<kw name="Enviar Um Carrinho" library="Base">
+<var>${response}</var>
+<arg>${carrinho}</arg>
+<msg timestamp="20220401 15:18:00.082" level="TRACE">Arguments: [ ${payload}={'produtos': [{'idProduto': 'ysmxmA7vaLFU0p1Q', 'quantidade': 14},
+              {'idProduto': 'onRhfpvDtED1Yi9s', 'quantidade': 14}]} ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{tokenzinho}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220401 15:18:00.083" level="TRACE">Arguments: [ 'Authorization=${token}' ]</msg>
+<msg timestamp="20220401 15:18:00.084" level="TRACE">Return: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg'}</msg>
+<msg timestamp="20220401 15:18:00.084" level="INFO">&amp;{tokenzinho} = { Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTp...</msg>
+<status status="PASS" starttime="20220401 15:18:00.083" endtime="20220401 15:18:00.084"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_URL}/carrinhos</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${tokenzinho}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220401 15:18:00.086" level="TRACE">Arguments: [ 'https://serverest.dev/carrinhos' | json={'produtos': [{'idProduto': 'ysmxmA7vaLFU0p1Q', 'quantidade': 14},
+              {'idProduto': 'onRhfpvDtED1Yi9s', 'quantidade': 14}]} | headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg'} | expected_status='any' ]</msg>
+<msg timestamp="20220401 15:18:00.091" level="DEBUG">Starting new HTTPS connection (1): serverest.dev:443</msg>
+<msg timestamp="20220401 15:18:00.582" level="DEBUG">https://serverest.dev:443 "POST /carrinhos HTTP/1.1" 400 151</msg>
+<msg timestamp="20220401 15:18:00.584" level="INFO">POST Request : url=https://serverest.dev/carrinhos 
+ path_url=/carrinhos 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ4ODM3MDgwLCJleHAiOjE2NDg4Mzc2ODB9.AgfwGW1pmPpxdNf8hs2Z22GecWLZhR42hTplTSjx2Mg', 'Content-Length': '120', 'Content-Type': 'application/json'} 
+ body=b'{"produtos": [{"idProduto": "ysmxmA7vaLFU0p1Q", "quantidade": 14}, {"idProduto": "onRhfpvDtED1Yi9s", "quantidade": 14}]}' 
+ </msg>
+<msg timestamp="20220401 15:18:00.585" level="INFO">POST Response : url=https://serverest.dev/carrinhos 
+ status=400, reason=Bad Request 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '9eb86e57-80c8-4be7-b19f-03613aa1fcb7', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': 'ddd8dfb6c4a08f099762414585c03601', 'Date': 'Fri, 01 Apr 2022 18:18:00 GMT', 'Server': 'Google Frontend', 'Content-Length': '151'} 
+ body={
+    "message": "Produto não encontrado",
+    "item": {
+        "index": 0,
+        "idProduto": "ysmxmA7vaLFU0p1Q",
+        "quantidade": 14
+    }
+} 
+ </msg>
+<msg timestamp="20220401 15:18:00.585" level="TRACE">Return: &lt;Response [400]&gt;</msg>
+<msg timestamp="20220401 15:18:00.585" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220401 15:18:00.085" endtime="20220401 15:18:00.585"/>
+</kw>
+<msg timestamp="20220401 15:18:00.585" level="TRACE">Return: &lt;Response [400]&gt;</msg>
+<msg timestamp="20220401 15:18:00.585" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220401 15:18:00.082" endtime="20220401 15:18:00.586"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>201</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<msg timestamp="20220401 15:18:00.586" level="TRACE">Arguments: [ '201' ]</msg>
+<msg timestamp="20220401 15:18:00.642" level="FAIL">Url: https://serverest.dev/carrinhos Expected status: 400 != 201</msg>
+<msg timestamp="20220401 15:18:00.642" level="DEBUG">Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\RequestsLibrary\RequestsKeywords.py", line 121, in status_should_be
+    self._check_status(expected_status, response, msg)
+  File "C:\Python310\lib\site-packages\RequestsLibrary\SessionKeywords.py", line 582, in _check_status
+    assert_equal(resp.status_code, expected_status, msg)
+  File "C:\Python310\lib\site-packages\robot\utils\asserts.py", line 182, in assert_equal
+    _report_inequality(first, second, '!=', msg, values, formatter)
+  File "C:\Python310\lib\site-packages\robot\utils\asserts.py", line 231, in _report_inequality
+    raise AssertionError(msg)</msg>
+<status status="FAIL" starttime="20220401 15:18:00.586" endtime="20220401 15:18:00.642"/>
+</kw>
+<kw name="Retornar Carrinho Pelo Id" library="Carrinho">
+<var>${response}</var>
+<arg>${response.json()['_id']}</arg>
+<status status="NOT RUN" starttime="20220401 15:18:00.642" endtime="20220401 15:18:00.642"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.643" endtime="20220401 15:18:00.643"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${produto_1_id}</arg>
+<arg>${response.json()['produtos'][0]['idProduto']}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.643" endtime="20220401 15:18:00.643"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${quantidade_produto_1}</arg>
+<arg>${response.json()['produtos'][0]['quantidade']}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.643" endtime="20220401 15:18:00.643"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${preco_unitario_1}</arg>
+<arg>${response.json()['produtos'][0]['precoUnitario']}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.643" endtime="20220401 15:18:00.644"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${produto_2_id}</arg>
+<arg>${response.json()['produtos'][1]['idProduto']}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.644" endtime="20220401 15:18:00.644"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${quantidade_produto_2}</arg>
+<arg>${response.json()['produtos'][1]['quantidade']}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.644" endtime="20220401 15:18:00.645"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${preco_unitario_2}</arg>
+<arg>${response.json()['produtos'][1]['precoUnitario']}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.645" endtime="20220401 15:18:00.645"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${preco_total}</arg>
+<arg>${response.json()['precoTotal']}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.645" endtime="20220401 15:18:00.645"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${quantidade_total}</arg>
+<arg>${response.json()['quantidadeTotal']}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.645" endtime="20220401 15:18:00.646"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${id_usuario}</arg>
+<arg>${response.json()['idUsuario']}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.646" endtime="20220401 15:18:00.646"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${id_carrinho}</arg>
+<arg>${response.json()['_id']}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220401 15:18:00.646" endtime="20220401 15:18:00.646"/>
+</kw>
+<status status="FAIL" starttime="20220401 15:18:00.079" endtime="20220401 15:18:00.647">Url: https://serverest.dev/carrinhos Expected status: 400 != 201</status>
+</test>
+<doc>Consulta Carrinho</doc>
+<status status="FAIL" starttime="20220401 15:17:58.631" endtime="20220401 15:18:00.648"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="BuscarCarrinho">BuscarCarrinho</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,8 +1,6 @@
 ***Settings***
 Documentation    Cadastro De Carrinho
 
-
-
 Library    ../../factories/Carrinho.py
 Resource    ../../routes/Carrinho.robot
 

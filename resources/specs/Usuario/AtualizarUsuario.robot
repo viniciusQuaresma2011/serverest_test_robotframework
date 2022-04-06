@@ -14,7 +14,6 @@ Suite Setup    Set Client Key
 Cenario 1 - Deve Atualizar Um Usuario Com Dados Válidos
     
     
-    
     ${usuario_atualizacao}            Usuario
     ${response}             Atualizar Um Usuario       ${usuario_atualizacao}          
 

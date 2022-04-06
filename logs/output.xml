@@ -1,183 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.10.2 on win32)" generated="20220328 11:02:44.579" rpa="false" schemaversion="2">
-<suite id="s1" name="BuscarCarrinho" source="c:\projects\automacao_serverest\specs\Carrinho\BuscarCarrinho.robot">
-<test id="s1-t1" name="Cenario 1 - Buscar Carrinho pelo Id">
-<kw name="Retornar Carrinho Pelo Id" library="Carrinho">
+<robot generator="Robot 4.1.3 (Python 3.10.2 on win32)" generated="20220406 14:40:45.003" rpa="false" schemaversion="2">
+<suite id="s1" name="CriarProduto" source="c:\projects\automacao_serverest\resources\specs\Produto\CriarProduto.robot">
+<kw name="Set Client Key" library="Base" type="SETUP">
+<msg timestamp="20220406 14:40:45.377" level="TRACE">Arguments: [  ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{teste}</var>
+<arg>email=larai1@qa.com.br</arg>
+<arg>password=teste</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220406 14:40:45.384" level="TRACE">Arguments: [ 'email=larai1@qa.com.br' | 'password=teste' ]</msg>
+<msg timestamp="20220406 14:40:45.385" level="TRACE">Return: {'email': 'larai1@qa.com.br', 'password': 'teste'}</msg>
+<msg timestamp="20220406 14:40:45.386" level="INFO">&amp;{teste} = { email=larai1@qa.com.br | password=teste }</msg>
+<status status="PASS" starttime="20220406 14:40:45.384" endtime="20220406 14:40:45.386"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
 <var>${response}</var>
-<arg>${id_carrinho}</arg>
-<msg timestamp="20220328 11:02:44.952" level="TRACE">Arguments: [ ${payload}='qbMqntef4iTOwWfg' ]</msg>
-<kw name="GET" library="RequestsLibrary">
-<var>${response}</var>
-<arg>${API_URL}/carrinhos/${payload}</arg>
-<doc>Sends a GET request.</doc>
-<msg timestamp="20220328 11:02:44.952" level="TRACE">Arguments: [ 'https://serverest.dev/carrinhos/qbMqntef4iTOwWfg' ]</msg>
-<msg timestamp="20220328 11:02:44.957" level="DEBUG">Starting new HTTPS connection (1): serverest.dev:443</msg>
-<msg timestamp="20220328 11:02:45.463" level="DEBUG">https://serverest.dev:443 "GET /carrinhos/qbMqntef4iTOwWfg HTTP/1.1" 200 401</msg>
-<msg timestamp="20220328 11:02:45.468" level="INFO">GET Request : url=https://serverest.dev/carrinhos/qbMqntef4iTOwWfg 
- path_url=/carrinhos/qbMqntef4iTOwWfg 
- headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
- body=None 
+<arg>${API_URL}/login</arg>
+<arg>json=${teste}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220406 14:40:45.387" level="TRACE">Arguments: [ 'http://localhost:3000/login' | json={'email': 'larai1@qa.com.br', 'password': 'teste'} ]</msg>
+<msg timestamp="20220406 14:40:45.394" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220406 14:40:45.405" level="DEBUG">http://localhost:3000 "POST /login HTTP/1.1" 200 269</msg>
+<msg timestamp="20220406 14:40:45.407" level="INFO">POST Request : url=http://localhost:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '50', 'Content-Type': 'application/json'} 
+ body=b'{"email": "larai1@qa.com.br", "password": "teste"}' 
  </msg>
-<msg timestamp="20220328 11:02:45.469" level="INFO">GET Response : url=https://serverest.dev/carrinhos/qbMqntef4iTOwWfg 
+<msg timestamp="20220406 14:40:45.408" level="INFO">POST Response : url=http://localhost:3000/login 
  status=200, reason=OK 
- headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': 'd2235f4b-484c-430a-8547-05a32de8a48d', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '5c56bab099ee127fabae1bcaa0ab4785;o=1', 'Date': 'Mon, 28 Mar 2022 14:02:45 GMT', 'Server': 'Google Frontend', 'Content-Length': '401'} 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '453a63a1-1fce-47fd-b280-81441ccc5066', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '269', 'Date': 'Wed, 06 Apr 2022 17:40:45 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
  body={
-    "produtos": [
-        {
-            "idProduto": "BeeJh5lz3k6kSIzA",
-            "quantidade": 2,
-            "precoUnitario": 470
-        },
-        {
-            "idProduto": "K6leHdftCeOJj8BJ",
-            "quantidade": 1,
-            "precoUnitario": 5240
-        }
-    ],
-    "precoTotal": 6180,
-    "quantidadeTotal": 3,
-    "idUsuario": "oUb7aGkMtSEPf6BZ",
-    "_id": "qbMqntef4iTOwWfg"
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI"
 } 
  </msg>
-<msg timestamp="20220328 11:02:45.469" level="TRACE">Return: &lt;Response [200]&gt;</msg>
-<msg timestamp="20220328 11:02:45.470" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220328 11:02:44.952" endtime="20220328 11:02:45.471"/>
+<msg timestamp="20220406 14:40:45.408" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20220406 14:40:45.408" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220406 14:40:45.386" endtime="20220406 14:40:45.408"/>
 </kw>
-<msg timestamp="20220328 11:02:45.472" level="TRACE">Return: &lt;Response [200]&gt;</msg>
-<msg timestamp="20220328 11:02:45.472" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220328 11:02:44.951" endtime="20220328 11:02:45.472"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${token}</var>
+<arg>${response.json()["authorization"]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220406 14:40:45.409" level="TRACE">Arguments: [ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI' ]</msg>
+<msg timestamp="20220406 14:40:45.409" level="TRACE">Return: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI'</msg>
+<msg timestamp="20220406 14:40:45.410" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI</msg>
+<status status="PASS" starttime="20220406 14:40:45.408" endtime="20220406 14:40:45.410"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220406 14:40:45.410" level="TRACE">Arguments: [ '${token}' ]</msg>
+<msg timestamp="20220406 14:40:45.410" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI</msg>
+<msg timestamp="20220406 14:40:45.410" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220406 14:40:45.410" endtime="20220406 14:40:45.410"/>
+</kw>
+<msg timestamp="20220406 14:40:45.411" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20220406 14:40:45.376" endtime="20220406 14:40:45.411"/>
+</kw>
+<test id="s1-t1" name="Cenário 1 - Cadastro de Produto com dados válidos">
+<kw name="Produto" library="Produto">
+<var>${produto}</var>
+<msg timestamp="20220406 14:40:45.412" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20220406 14:40:45.413" level="TRACE">Return: {'descricao': 'serve monitorars',
+ 'nome': 'Monitor Semp',
+ 'preco': 42,
+ 'quantidade': 33}</msg>
+<msg timestamp="20220406 14:40:45.413" level="INFO">${produto} = {'nome': 'Monitor Semp', 'preco': 42, 'descricao': 'serve monitorars', 'quantidade': 33}</msg>
+<status status="PASS" starttime="20220406 14:40:45.412" endtime="20220406 14:40:45.413"/>
+</kw>
+<kw name="Enviar Um Produto" library="Base">
+<var>${response}</var>
+<arg>${produto}</arg>
+<msg timestamp="20220406 14:40:45.414" level="TRACE">Arguments: [ ${payload}={'descricao': 'serve monitorars',
+ 'nome': 'Monitor Semp',
+ 'preco': 42,
+ 'quantidade': 33} ]</msg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{tokenzinho}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220406 14:40:45.415" level="TRACE">Arguments: [ 'Authorization=${token}' ]</msg>
+<msg timestamp="20220406 14:40:45.416" level="TRACE">Return: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI'}</msg>
+<msg timestamp="20220406 14:40:45.416" level="INFO">&amp;{tokenzinho} = { Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhV...</msg>
+<status status="PASS" starttime="20220406 14:40:45.414" endtime="20220406 14:40:45.417"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_URL}/produtos</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${tokenzinho}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220406 14:40:45.419" level="TRACE">Arguments: [ 'http://localhost:3000/produtos' | json={'descricao': 'serve monitorars',
+ 'nome': 'Monitor Semp',
+ 'preco': 42,
+ 'quantidade': 33} | headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI'} | expected_status='any' ]</msg>
+<msg timestamp="20220406 14:40:45.422" level="DEBUG">Starting new HTTP connection (1): localhost:3000</msg>
+<msg timestamp="20220406 14:40:45.431" level="DEBUG">http://localhost:3000 "POST /produtos HTTP/1.1" 400 53</msg>
+<msg timestamp="20220406 14:40:45.432" level="INFO">POST Request : url=http://localhost:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhcmFpMUBxYS5jb20uYnIiLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjQ5MjY2ODQ1LCJleHAiOjE2NDkyNjc0NDV9.YhVpWGR1vAhN4GVBVsbVps94Qc6xYhVqiVb1G3jC6XI', 'Content-Length': '88', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Monitor Semp", "preco": 42, "descricao": "serve monitorars", "quantidade": 33}' 
+ </msg>
+<msg timestamp="20220406 14:40:45.433" level="INFO">POST Response : url=http://localhost:3000/produtos 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '3310a496-831e-47cd-a3c5-15a6f4fd9a24', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '53', 'Date': 'Wed, 06 Apr 2022 17:40:45 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Já existe produto com esse nome"
+} 
+ </msg>
+<msg timestamp="20220406 14:40:45.433" level="TRACE">Return: &lt;Response [400]&gt;</msg>
+<msg timestamp="20220406 14:40:45.433" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220406 14:40:45.417" endtime="20220406 14:40:45.434"/>
+</kw>
+<msg timestamp="20220406 14:40:45.434" level="TRACE">Return: &lt;Response [400]&gt;</msg>
+<msg timestamp="20220406 14:40:45.434" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220406 14:40:45.413" endtime="20220406 14:40:45.434"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
-<arg>200</arg>
+<arg>201</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<msg timestamp="20220328 11:02:45.474" level="TRACE">Arguments: [ '200' ]</msg>
-<msg timestamp="20220328 11:02:45.474" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.473" endtime="20220328 11:02:45.474"/>
+<msg timestamp="20220406 14:40:45.435" level="TRACE">Arguments: [ '201' ]</msg>
+<msg timestamp="20220406 14:40:45.439" level="FAIL">Url: http://localhost:3000/produtos Expected status: 400 != 201</msg>
+<msg timestamp="20220406 14:40:45.440" level="DEBUG">Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\RequestsLibrary\RequestsKeywords.py", line 121, in status_should_be
+    self._check_status(expected_status, response, msg)
+  File "C:\Python310\lib\site-packages\RequestsLibrary\SessionKeywords.py", line 582, in _check_status
+    assert_equal(resp.status_code, expected_status, msg)
+  File "C:\Python310\lib\site-packages\robot\utils\asserts.py", line 182, in assert_equal
+    _report_inequality(first, second, '!=', msg, values, formatter)
+  File "C:\Python310\lib\site-packages\robot\utils\asserts.py", line 231, in _report_inequality
+    raise AssertionError(msg)</msg>
+<status status="FAIL" starttime="20220406 14:40:45.435" endtime="20220406 14:40:45.440"/>
 </kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${produto_1_id}</arg>
-<arg>${response.json()['produtos'][0]['idProduto']}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20220328 11:02:45.478" level="TRACE">Arguments: [ 'BeeJh5lz3k6kSIzA' | 'BeeJh5lz3k6kSIzA' ]</msg>
-<msg timestamp="20220328 11:02:45.478" level="DEBUG">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;type 'unicode'&gt;</msg>
-<msg timestamp="20220328 11:02:45.478" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.475" endtime="20220328 11:02:45.479"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${quantidade_produto_1}</arg>
-<arg>${response.json()['produtos'][0]['quantidade']}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220328 11:02:45.482" level="TRACE">Arguments: [ '2' | 2 ]</msg>
-<msg timestamp="20220328 11:02:45.482" level="INFO">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;class 'int'&gt;</msg>
-<msg timestamp="20220328 11:02:45.483" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.479" endtime="20220328 11:02:45.483"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${preco_unitario_1}</arg>
-<arg>${response.json()['produtos'][0]['precoUnitario']}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220328 11:02:45.487" level="TRACE">Arguments: [ '470' | 470 ]</msg>
-<msg timestamp="20220328 11:02:45.487" level="INFO">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;class 'int'&gt;</msg>
-<msg timestamp="20220328 11:02:45.488" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.483" endtime="20220328 11:02:45.488"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${produto_2_id}</arg>
-<arg>${response.json()['produtos'][1]['idProduto']}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20220328 11:02:45.491" level="TRACE">Arguments: [ 'K6leHdftCeOJj8BJ' | 'K6leHdftCeOJj8BJ' ]</msg>
-<msg timestamp="20220328 11:02:45.492" level="DEBUG">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;type 'unicode'&gt;</msg>
-<msg timestamp="20220328 11:02:45.492" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.488" endtime="20220328 11:02:45.492"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${quantidade_produto_2}</arg>
-<arg>${response.json()['produtos'][1]['quantidade']}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220328 11:02:45.493" level="TRACE">Arguments: [ '1' | 1 ]</msg>
-<msg timestamp="20220328 11:02:45.494" level="INFO">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;class 'int'&gt;</msg>
-<msg timestamp="20220328 11:02:45.494" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.492" endtime="20220328 11:02:45.494"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${preco_unitario_2}</arg>
-<arg>${response.json()['produtos'][1]['precoUnitario']}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220328 11:02:45.495" level="TRACE">Arguments: [ '5240' | 5240 ]</msg>
-<msg timestamp="20220328 11:02:45.496" level="INFO">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;class 'int'&gt;</msg>
-<msg timestamp="20220328 11:02:45.496" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.494" endtime="20220328 11:02:45.496"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${preco_total}</arg>
-<arg>${response.json()['precoTotal']}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220328 11:02:45.497" level="TRACE">Arguments: [ '6180' | 6180 ]</msg>
-<msg timestamp="20220328 11:02:45.497" level="INFO">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;class 'int'&gt;</msg>
-<msg timestamp="20220328 11:02:45.498" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.496" endtime="20220328 11:02:45.498"/>
-</kw>
-<kw name="Should Be Equal As Integers" library="BuiltIn">
-<arg>${quantidade_total}</arg>
-<arg>${response.json()['quantidadeTotal']}</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220328 11:02:45.500" level="TRACE">Arguments: [ '3' | 3 ]</msg>
-<msg timestamp="20220328 11:02:45.500" level="INFO">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;class 'int'&gt;</msg>
-<msg timestamp="20220328 11:02:45.500" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.498" endtime="20220328 11:02:45.500"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${id_usuario}</arg>
-<arg>${response.json()['idUsuario']}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20220328 11:02:45.501" level="TRACE">Arguments: [ 'oUb7aGkMtSEPf6BZ' | 'oUb7aGkMtSEPf6BZ' ]</msg>
-<msg timestamp="20220328 11:02:45.502" level="DEBUG">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;type 'unicode'&gt;</msg>
-<msg timestamp="20220328 11:02:45.502" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.500" endtime="20220328 11:02:45.502"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${id_carrinho}</arg>
-<arg>${response.json()['_id']}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20220328 11:02:45.504" level="TRACE">Arguments: [ 'qbMqntef4iTOwWfg' | 'qbMqntef4iTOwWfg' ]</msg>
-<msg timestamp="20220328 11:02:45.504" level="DEBUG">Argument types are:
-&lt;type 'unicode'&gt;
-&lt;type 'unicode'&gt;</msg>
-<msg timestamp="20220328 11:02:45.504" level="TRACE">Return: None</msg>
-<status status="PASS" starttime="20220328 11:02:45.502" endtime="20220328 11:02:45.504"/>
-</kw>
-<status status="PASS" starttime="20220328 11:02:44.950" endtime="20220328 11:02:45.505"/>
+<status status="FAIL" starttime="20220406 14:40:45.411" endtime="20220406 14:40:45.441">Url: http://localhost:3000/produtos Expected status: 400 != 201</status>
 </test>
-<doc>Consulta Carrinho</doc>
-<status status="PASS" starttime="20220328 11:02:44.582" endtime="20220328 11:02:45.506"/>
+<doc>Cadastro De Produtos</doc>
+<status status="FAIL" starttime="20220406 14:40:45.010" endtime="20220406 14:40:45.443"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="BuscarCarrinho">BuscarCarrinho</stat>
+<stat pass="0" fail="1" skip="0" id="s1" name="CriarProduto">CriarProduto</stat>
 </suite>
 </statistics>
 <errors>

@@ -4,10 +4,10 @@
 def produto():
     return {
 
-    "nome": "faker.name()1",
-    "preco": 470,
-    "descricao": "Mouse",
-    "quantidade": 381
+    "nome": "Monitor Semp",
+    "preco": 42 ,
+    "descricao": "serve monitorars",
+    "quantidade": 33
     }
 
 

@@ -5,13 +5,11 @@ Resource         ../base/Base.robot
 
 
 **Variables**
-${API_URL}          https://serverest.dev
+${API_URL}          http://localhost:3000
 
 
 
 ***Keywords***
-
-
 Autenticar Um Usuario
     [Arguments]     ${payload}
 

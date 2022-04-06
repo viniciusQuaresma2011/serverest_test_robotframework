@@ -5,8 +5,7 @@ Resource    ../../routes/Usuario.robot
 Library    ../../factories/Usuario.py
 
 *** Variables ***
-${base_url}    https://serverest.dev
-${id_usuario}     0uxuPY0cbmQhpEz1      
+${id_usuario}     Y94Rq18QsfeCzusk      
 
 *** Test Cases ***
 Cenario 1 - Buscar Usuario pelo Id 
