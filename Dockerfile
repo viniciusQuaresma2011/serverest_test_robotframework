@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["robot", "resources/specs/Carrinho/CriarCarrinho.robot"]
+CMD ["robot", "resources/specs/**/*.robot"]
