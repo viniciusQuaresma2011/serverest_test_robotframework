@@ -1,5 +1,5 @@
 robotframework
 robotframework-requests
 robotframework-jsonlibrary
-robotframework-collections
+
 
