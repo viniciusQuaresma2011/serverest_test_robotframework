@@ -1,22 +1,24 @@
-# serverest_test_robotframework
-Projeto de automaçao em uma API REST de E-commerce de Produtos, utilizando Robot Framework(Scripts)
+<h1>Serverest Robot-Framework</h1>
+![Captura de tela_13-2-2024_12532_serverest dev](https://github.com/viniciusQuaresma2011/serverest_test_robotframework/assets/85623269/23341e5c-f513-46d2-b265-53e33fe129cb)
 
-ATENÇÃO -> Projeto configurado para rodar em Container :D
+<p> Projeto de automaçao em uma API REST de E-commerce de Produtos, utilizando Robot Framework(Scripts) </p>
 
-1º Passo: Clonar o projeto -> Branch: master
+> ATENÇÃO -> Projeto configurado para rodar em Container :D
 
-git clone https://github.com/viniciusQuaresma2011/serverest_test_robotframework.git
+### 1º Passo: Clonar o projeto -> Branch: master
 
-2º Passo: Entrar na pasta do projeto
++ git clone https://github.com/viniciusQuaresma2011/serverest_test_robotframework.git
 
-cd serverest_test_robotframework
+### 2º Passo: Entrar na pasta do projeto
 
-3º Passo: Crie uma imagem docker
++ cd serverest_test_robotframework
 
-docker build -t testando .
+### 3º Passo: Crie uma imagem docker
 
-4º Passo: Execute o comando para rodar o teste
++ docker build -t testando .
 
-docker run testando
+### 4º Passo: Execute o comando para rodar o teste
 
-5º Passo: acesse a pasta output e veja o resultado dos testes.
++ docker run testando
+
+### 5º Passo: acesse a pasta output e veja o resultado dos testes.
